@@ -1,0 +1,163 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "Question #1\r\nCreate a type to represent the following instances of CTStudent Also declare three 3 students below as type CTStudent and set their values"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "type CTStudent = {\r\n    id: string;\r\n    name: string;\r\n    age: number;\r\n    isTired: boolean;\r\n    projectsCompleted: string[];\r\n    pet?: string;\r\n};\r\n\r\nlet student1: CTStudent = {\r\n    id: 'GMK435&g62L00',\r\n    name: 'John Smith',\r\n    age: 24,\r\n    isTired: true,\r\n    projectsCompleted:[\"HTML Portfolio\", \"Fakebook\", \"Pokemon API Project\", \"Weather Bug\"],\r\n    pet: 'dog'\r\n};\r\n\r\nlet student2: CTStudent = {\r\n    id: '6KGS%54GmlY76',\r\n    name: 'Jenny Hawthorne',\r\n    age: 28,\r\n    isTired: false,\r\n    projectsCompleted:[\"HTML Portfolio\"],\r\n};\r\n\r\nlet student3: CTStudent = {\r\n    id: '6KGS%54GmlY76',\r\n    name: 'Neo',\r\n    age: 57,\r\n    isTired: true,\r\n    projectsCompleted:[\"Matrix\",\"Biological Interface Program\"],\r\n    pet:'cat'\r\n};\r\n\r\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Question #2\r\nWrite a function that will accept a an object of type Fruit, the object of type Fruit could also be null. If their is a Fruit print the color of the fruit, otherwise print You ate my fruit already be sure to annoate the return type of the function\r\n\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "type Fruit = {\r\n    color: string,\r\n    shape: string,\r\n};\r\n\r\nfunction fruitColor(fruit: Fruit | null): void {\r\n    if (fruit == null) \r\n        {console.log('You ate my fruit already!')}\r\n    else {console.log(`The color of my fruit is ${fruit.color}`)}\r\n}\r\n\r\nconst apple: Fruit =  {color: \"green\", shape: \"sphere\"};\r\nconst nothin: Fruit | null = null;\r\n\r\n\r\nfruitColor(nothin)\r\nfruitColor(apple)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "You ate my fruit already!",
+                                "The color of my fruit is green",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### Question #3 Create a Union Type named `Ebook` for `Book` and `DigitalBook` and create one instance of the new union type"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "type Book = {\r\n    author: string;\r\n    title: string;\r\n    pageCount: number\r\n};\r\n\r\ntype DigitalBook = {\r\n    author: string;\r\n    title: string;\r\n    pageCount: number\r\n    format: \"pdf\" | \"epub\"\r\n}\r\n\r\ntype Ebook = Book | DigitalBook\r\n\r\nconst ebook: Ebook = {title: \"Harry Potter\", author: \"J.K. Rowling\", pageCount: 412, format: \"epub\"};\r\n\r\n\r\nconsole.log(ebook.pageCount) \r\n\r\nconsole.log(ebook)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "412",
+                                "{",
+                                "  title: 'Harry Potter',",
+                                "  author: 'J.K. Rowling',",
+                                "  pageCount: 412,",
+                                "  format: 'epub'",
+                                "}",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### Question #4\r\nCreate a Type to represent a `ShopItem` that will fit the following rules. You may need to create additional structures\r\n\r\n- All ShopItems have an numeric id that can not be edited \r\n- All ShopItems have a price\r\n- All ShopItems have a description\r\n- Some ShopItems have a color\r\n- All ShopItems have a Category represented with an enum \r\n    - Possible Categories are `Shirts` `Shoes` `Pants` `Hats`\r\n- All ShopItems have a list of keywords used to help search for the ShopItem \r\n    - For Example A Ironman Tshirt may have keywords = [\"Marvel\", \"Endgame\", \"Ironman\",\"Character Tees\", \"Tony Stark\"]\r\n\r\nAfter Creating the `ShopItem` type create 3 items using this type"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "enum Category {\r\n    Shirts = \"Shirts\",\r\n    Pants = \"Pants\",\r\n    Shoes = \"Shoes\",\r\n    Hats = \"Hats\"\r\n\r\n}\r\n\r\ntype ShopItem = {\r\n    readonly id: number;\r\n    price: number;\r\n    description: string;\r\n    color: string | null;\r\n    category: Category;\r\n    keywords: string[];\r\n}\r\n\r\nlet polo: ShopItem = {\r\n    id: 1, \r\n    price: 109.99, \r\n    description: \"Reliable and hard-working, casual polo shirts sit at the core of Polo Ralph Lauren's collections\",\r\n    color: \"blue\",\r\n    category: Category.Shirts,\r\n    keywords: [\"luxury\", \"tshirt\", \"polo\", \"cotton\"]\r\n}\r\n\r\nlet asics: ShopItem = {\r\n    id: 2,\r\n    price: 59.99,\r\n    description: \"Asics shoes are designed for high mileage training and durability.\",\r\n    color: null,\r\n    category: Category.Shoes,\r\n    keywords: [\"running\", \"mesh\", \"breathable\", \"light\"]\r\n}\r\n\r\nlet wranglerRetro: ShopItem = {\r\n    id: 3,\r\n    price: 59.97,\r\n    description: \"This Wrangler Retro® Premium Jean blends the classic Western style you love with eco-friendly design.\",\r\n    color: \"ansley\",\r\n    category: Category.Pants,\r\n    keywords: [\"slimfit\", \"premium\", \"durable\" ]\r\n}\r\n\r\nconsole.log(wranglerRetro.price)\r\nconsole.log(asics.color)\r\nconsole.log(polo.keywords)\r\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "59.97",
+                                "null",
+                                "[ 'luxury', 'tshirt', 'polo', 'cotton' ]",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "console.log(polo)\r\nconsole.log(asics)\r\nconsole.log(wranglerRetro)\r\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "{",
+                                "  id: 1,",
+                                "  price: 109.99,",
+                                "  description: \"Reliable and hard-working, casual polo shirts sit at the core of Polo Ralph Lauren's collections\",",
+                                "  color: 'blue',",
+                                "  category: 'Shirts',",
+                                "  keywords: [ 'luxury', 'tshirt', 'polo', 'cotton' ]",
+                                "}",
+                                "{",
+                                "  id: 2,",
+                                "  price: 59.99,",
+                                "  description: 'Asics shoes are designed for high mileage training and durability.',",
+                                "  color: null,",
+                                "  category: 'Shoes',",
+                                "  keywords: [ 'running', 'mesh', 'breathable', 'light' ]",
+                                "}",
+                                "{",
+                                "  id: 3,",
+                                "  price: 59.97,",
+                                "  description: 'This Wrangler Retro® Premium Jean blends the classic Western style you love with eco-friendly design.',",
+                                "  color: 'ansley',",
+                                "  category: 'Pants',",
+                                "  keywords: [ 'slimfit', 'premium', 'durable' ]",
+                                "}",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
